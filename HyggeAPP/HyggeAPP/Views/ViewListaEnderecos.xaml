@@ -38,6 +38,31 @@
 
         <Label Grid.Row="0" Grid.Column="1" Text="Seus endereços" FontAttributes="Bold" FontSize="Large" TextColor="White" HorizontalTextAlignment="Center"></Label>
 
+        <ListView x:Name="listaEnderecos" RowHeight="100" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" ItemsSource="{Binding Enderecos}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height=".3*" />
+                                <RowDefinition Height=".7*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".2*" />
+                                <ColumnDefinition Width=".8*" />
+                                <ColumnDefinition Width=".8*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label HorizontalOptions="Start" Text="{Binding descricao_amigavel}" Grid.Column="1" />
+                            <Label HorizontalOptions="Start" Text="{Binding logradouro}" Grid.Row="1" Grid.Column="1" />
+                            <Label HorizontalOptions="Start" Text="{Binding numero}" Grid.Row="1" Grid.Column="2" />
+                            
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </Grid>
 

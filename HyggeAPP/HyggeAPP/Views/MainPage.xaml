@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:enhancedEntry="clr-namespace:LeoJHarris.FormsPlugin.Abstractions;assembly=LeoJHarris.FormsPlugin.Abstractions" xmlns:viewmodels="clr-namespace:HyggeAPP.ViewModels" xmlns:controls="clr-namespace:Xamarin.Forms.BackgroundVideoView;assembly=Xamarin.Forms.BackgroundVideoView" x:DataType="viewmodels:MainPageViewModel"
+             x:Class="HyggeAPP.Views.MainPage"
+             BackgroundImageSource="fundo.jpg"
+             >
+
+    <controls:BackgroundVideoView Source="lamborghiniwash.mp4" Loop="True"
+                        HorizontalOptions="Fill" VerticalOptions="Fill" >
+        <controls:BackgroundVideoView.ViewContent>
+
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+
+                <!--<ActivityIndicator x:Name="defaultActivityIndicator"
+                           VerticalOptions="CenterAndExpand" IsRunning="{Binding IsTaskRunning}"
+                           HorizontalOptions="Fill" />-->
+                <ActivityIndicator x:Name="styledActivityIndicator"
+                           Color="Orange"
+                           VerticalOptions="CenterAndExpand" IsRunning="{Binding IsTaskRunning}"
+                           HorizontalOptions="Fill" />
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="215" />
+                        <RowDefinition Height="57" />
+                        <RowDefinition Height="11" />
+                        <RowDefinition Height="57" />
+                        <RowDefinition Height="11" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="11" />
+                        <RowDefinition Height="57" />
+                        <RowDefinition Height="11" />
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="65" />
+                        <ColumnDefinition Width="250" />
+                        <ColumnDefinition Width="65" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Row="0" Grid.Column="1" HeightRequest="215"></Image>
+
+                    <Button Grid.Row="1" Grid.Column="1" CornerRadius="17" BorderWidth="3" BackgroundColor="White" BorderColor="White"></Button>
+                    <!--<Entry Grid.Row="1" Grid.Column="0" Margin="5"></Entry>-->
+                    <enhancedEntry:EnhancedEntry Placeholder="e-mail" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
+                                         FontSize="Medium" PlaceholderColor="Gray" MaxLength="250" TextColor="Black" 
+                                         BackgroundColor="Transparent" Text="{Binding Path=Usuario}"></enhancedEntry:EnhancedEntry>
+
+
+                    <Button Grid.Row="3" Grid.Column="1" CornerRadius="17" BorderWidth="3" BackgroundColor="White" BorderColor="White"></Button>
+                    <!--<Entry Grid.Row="1" Grid.Column="0" Margin="5"></Entry>-->
+                    <enhancedEntry:EnhancedEntry Placeholder="senha" Grid.Row="3" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
+                                         FontSize="Medium" PlaceholderColor="Gray" MaxLength="250" TextColor="Black" 
+                                         BackgroundColor="Transparent" Text="{Binding Path=Senha}"></enhancedEntry:EnhancedEntry>
+
+
+                    <Button Grid.Row="5" Grid.Column="1" CornerRadius="10" BorderWidth="1" BackgroundColor="Transparent" Text="Esqueceu sua senha?" FontAttributes="Bold" TextColor="White"></Button>
+
+                    <Button x:Name="btnLogin" Grid.Row="7" Grid.Column="1" CornerRadius="17" BorderWidth="3" TextColor="White" BackgroundColor="DarkBlue" Text="Entrar" FontSize="Small"
+                    Command="{Binding Path=LoginCommand}"
+                    ></Button>
+
+                    <Button Grid.Row="9" Command="{Binding Path=OpenCadastroCommand}" Grid.Column="1" CornerRadius="10" BorderWidth="1" BackgroundColor="Transparent" Text="Visitante? Cadastre-se aqui." FontAttributes="Bold" TextColor="White"></Button>
+
+
+                </Grid>
+
+            </StackLayout>
+
+        </controls:BackgroundVideoView.ViewContent>
+    </controls:BackgroundVideoView>
+
+</ContentPage>

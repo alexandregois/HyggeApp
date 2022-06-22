@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:enhancedEntry="clr-namespace:LeoJHarris.FormsPlugin.Abstractions;assembly=LeoJHarris.FormsPlugin.Abstractions" xmlns:viewmodels="clr-namespace:HyggeAPP.ViewModels" x:DataType="viewmodels:ViewCadastroViewModel"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="HyggeAPP.Views.ViewCadastro"
+             BackgroundImageSource="fundo.jpg">
+
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+
+        <!--<ActivityIndicator x:Name="defaultActivityIndicator"
+                           VerticalOptions="CenterAndExpand" IsRunning="{Binding IsTaskRunning}"
+                           HorizontalOptions="Fill" />-->
+        <ActivityIndicator x:Name="styledActivityIndicator"
+                           Color="Orange"
+                           VerticalOptions="CenterAndExpand" IsRunning="{Binding IsTaskRunning}"
+                           HorizontalOptions="Fill" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="57" />
+                <RowDefinition Height="47" />
+                <RowDefinition Height="3" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="3" />
+                <RowDefinition Height="47" />
+                <RowDefinition Height="3" />
+                <!--6-->
+                <RowDefinition Height="47" />
+                <RowDefinition Height="3" />
+                <RowDefinition Height="47" />
+                <RowDefinition Height="3" />
+                <!--10-->
+                <RowDefinition Height="47" />
+                <RowDefinition Height="3" />
+                <RowDefinition Height="47" />
+
+                <RowDefinition Height="35" />
+                <RowDefinition Height="47" />
+                <!--13-->
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="1" Text="Cadastre-se" FontAttributes="Bold" FontSize="Large" TextColor="White" HorizontalTextAlignment="Center"></Label>
+
+            <Button Grid.Row="1" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
+            <enhancedEntry:EnhancedEntry Placeholder="* nome" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
+                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
+                                         TextColor="Black" Text="{Binding Path=Nome}"></enhancedEntry:EnhancedEntry>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+                <RadioButton x:Name="rbCpf" Content="cpf" TextColor="White"
+                 IsChecked="{Binding Path=IsCheckRbCpf}"/>
+                <RadioButton x:Name="rbCnpj" Content="cnpj" IsChecked="{Binding Path=IsCheckRbCnpj}" TextColor="White"/>
+            </StackLayout>
+
+            <Button Grid.Row="5" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
+            <enhancedEntry:EnhancedEntry Placeholder="* cpf / cnpj" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
+                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" TextColor="Black" 
+                                         BackgroundColor="Transparent" Text="{Binding Path=CpfCnpj}"></enhancedEntry:EnhancedEntry>
+
+
+            <Button Grid.Row="7" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
+            <enhancedEntry:EnhancedEntry Placeholder="* login" Grid.Row="7" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
+                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" TextColor="Black"
+                                         BackgroundColor="Transparent" Text="{Binding Path=Login}"></enhancedEntry:EnhancedEntry>
+
+
+            <Button Grid.Row="9" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
+            <enhancedEntry:EnhancedEntry Placeholder="* senha" Grid.Row="9" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
+                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
+                                         BackgroundColor="Transparent" Text="{Binding Path=Senha}"></enhancedEntry:EnhancedEntry>
+
+            <Button Grid.Row="11" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
+            <enhancedEntry:EnhancedEntry Placeholder="* confirmar senha" Grid.Row="11" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
+                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
+                                         BackgroundColor="Transparent" Text="{Binding Path=ConfirmarSenha}"></enhancedEntry:EnhancedEntry>
+
+
+            <Button Grid.Row="13" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
+            <enhancedEntry:EnhancedEntry Placeholder="* e-mail" Grid.Row="13" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
+                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
+                                         BackgroundColor="Transparent" Text="{Binding Path=Email}"></enhancedEntry:EnhancedEntry>
+
+            <Label Grid.Row="14" Grid.Column="1" Text="* campos obrigatórios" FontSize="Small" TextColor="Red" HorizontalTextAlignment="Center"></Label>
+
+
+            <StackLayout Grid.Row="15" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+
+                <Button x:Name="btnSalvar"  CornerRadius="17" BorderWidth="3" TextColor="DarkRed" BackgroundColor="Transparent" Text="Salvar" FontSize="Medium"
+                    FontAttributes="Bold"></Button>
+
+                <Button x:Name="btnCancelar" Margin="15,0,0,0"  CornerRadius="17" BorderWidth="3" TextColor="DarkRed" BackgroundColor="Transparent" Text="Cancelar" FontSize="Medium"
+                        Command="{Binding Path=CancelarCommand}"
+                        FontAttributes="Bold"></Button>
+
+            </StackLayout>
+
+        </Grid>
+
+    </StackLayout>
+
+
+
+</ContentPage>

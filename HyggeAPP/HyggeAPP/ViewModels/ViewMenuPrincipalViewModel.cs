@@ -104,15 +104,12 @@ namespace HyggeAPP.ViewModels
 
             //string action = await vv.DisplayActionSheet("Escolha uma opção", "Cancel", null, "Veículos", "Endereços", "Cartões");
 
-
             String[] s2 = new String[3] { "Veículos", "Endereços", "Cartões" };
-
 
             var action =  await UserDialogs.Instance.ActionSheetAsync("Escolha uma opção", "Cancel", null, null, s2);
 
-
             if (action == "Endereços")
-                await NavigationService.NavigateAsync("NavigationPage/ViewListaEnderecos");
+                await NavigationService.NavigateAsync("ViewListaEnderecos");
         }
     }
 }

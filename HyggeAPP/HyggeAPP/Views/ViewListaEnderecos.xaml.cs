@@ -7,6 +7,8 @@ namespace HyggeAPP.Views
         public ViewListaEnderecos()
         {
             InitializeComponent();
+
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

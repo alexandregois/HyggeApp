@@ -23,5 +23,9 @@ namespace HyggeAPP.Interface
 
         //[Get("/posts/{id}")]
         //Task<UsuarioModel> GetAll(int id);
+
+        [Post("/api/EnderecoCliente/Listar?token={token}&usuario_rec_id={usuario_rec_id}")]
+        Task<UsuarioEnderecoModel> PostListaEndereco([AliasAs("token")] string token, [AliasAs("usuario_rec_id")] int usuario_rec_id);
+
     }
 }

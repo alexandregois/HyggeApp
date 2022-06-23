@@ -96,6 +96,7 @@ namespace HyggeAPP.ViewModels
             _app.Usuario.nome = Preferences.Get("nome", null);
             _app.Usuario.token = Preferences.Get("token", null);
             _app.Usuario.cod_usuario = Preferences.Get("codusuario", null);
+            _app.Usuario.rec_id = Convert.ToInt32(Preferences.Get("recid", null));
 
             if (!String.IsNullOrEmpty(_app.Usuario.nome)
                 && !String.IsNullOrEmpty(_app.Usuario.token)

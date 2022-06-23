@@ -95,8 +95,7 @@
             ></Button>
 
                 <Image Grid.Row="0" Grid.Column="2" Source="menu"></Image>
-                <Button x:Name="btnMenu" BackgroundColor="Transparent" TextColor="White" Grid.Row="0" Grid.Column="2" CornerRadius="10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Command="{Binding Path=OpenEnderecoCommand}"
-                    Clicked="btnMenu_Clicked"
+                <Button x:Name="btnMenu" BackgroundColor="Transparent" TextColor="White" Grid.Row="0" Grid.Column="2" CornerRadius="10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Command="{Binding Path=OpenMenuCommand}"
             ></Button>
 
 

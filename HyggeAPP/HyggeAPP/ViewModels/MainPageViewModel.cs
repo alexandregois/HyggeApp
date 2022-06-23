@@ -162,7 +162,6 @@ namespace HyggeAPP.ViewModels
                     Preferences.Set("nome", usuariosRetorno.nome);
                     Preferences.Set("rec_id", usuariosRetorno.rec_id);
 
-
                     _app.Usuario.token = usuariosRetorno.token;
                     _app.Usuario.cod_usuario = usuariosRetorno.cod_usuario;
                     _app.Usuario.nome = usuariosRetorno.nome;

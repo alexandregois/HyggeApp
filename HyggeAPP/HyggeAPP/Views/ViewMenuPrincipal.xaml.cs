@@ -1,10 +1,14 @@
-﻿using Xamarin.Essentials;
+﻿using System.ComponentModel;
+using Prism.Navigation;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HyggeAPP.Views
 {
     public partial class ViewMenuPrincipal : ContentPage
     {
+        INavigationService navigationService;
+
         public ViewMenuPrincipal()
         {
             InitializeComponent();
@@ -16,10 +20,10 @@ namespace HyggeAPP.Views
 
         private async void btnMenu_Clicked(System.Object sender, System.EventArgs e)
         {
-            string action = await DisplayActionSheet("Escolha uma opção", "Cancel", null, "Veículos", "Endereços", "Cartões");
+            //string action = await DisplayActionSheet("Escolha uma opção", "Cancel", null, "Veículos", "Endereços", "Cartões");
 
             //if (action == "Endereços")
-                //await NavigationService.NavigateAsync("ViewCadastroEndereco");
+            //    await navigationService.NavigateAsync("NavigationPage/MainPage");
         }
     }
 }

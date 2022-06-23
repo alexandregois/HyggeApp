@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Acr.UserDialogs;
+using HyggeAPP.Views;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -16,6 +18,8 @@ namespace HyggeAPP.ViewModels
         public App _app => (Application.Current as App);
 
         public DelegateCommand OpenEnderecoCommand { get; set; }
+        public DelegateCommand OpenMenuCommand { get; set; }
+
 
         private string nome;
         public string Nome
@@ -85,11 +89,31 @@ namespace HyggeAPP.ViewModels
             Nome1 = "Podemos cuidar do seu carro?";
 
             OpenEnderecoCommand = new DelegateCommand(OpenEnderecoAsync);
+            OpenMenuCommand = new DelegateCommand(OpenMenu);
         }
 
         private async void OpenEnderecoAsync()
         {
             //await NavigationService.NavigateAsync("ViewCadastroEndereco");
         }
+
+        private async void OpenMenu()
+        {
+
+            //ViewMenuPrincipal vv = new ViewMenuPrincipal();
+
+            //string action = await vv.DisplayActionSheet("Escolha uma opção", "Cancel", null, "Veículos", "Endereços", "Cartões");
+
+
+            String[] s2 = new String[3] { "Veículos", "Endereços", "Cartões" };
+
+
+            var action =  await UserDialogs.Instance.ActionSheetAsync("Escolha uma opção", "Cancel", null, null, s2);
+
+
+            if (action == "Endereços")
+                await NavigationService.NavigateAsync("NavigationPage/ViewListaEnderecos");
+        }
     }
 }
+ 

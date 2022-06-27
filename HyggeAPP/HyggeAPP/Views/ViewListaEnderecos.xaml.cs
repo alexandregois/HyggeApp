@@ -10,5 +10,10 @@ namespace HyggeAPP.Views
 
             NavigationPage.SetHasNavigationBar(this, false);
         }
+
+        private void listaEnderecos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            listaEnderecos.SelectedItem = null;
+        }
     }
 }

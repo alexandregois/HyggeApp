@@ -1,8 +1,102 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="HyggeAPP.Views.ViewListaVeiculos">
-  
+<ContentPage
+    x:Class="HyggeAPP.Views.ViewListaVeiculos"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:SharedTools.Models.WebPortal_API;assembly=SharedTools"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:viewModel="clr-namespace:HyggeAPP.ViewModels"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    x:DataType="viewModel:ViewListaVeiculosViewModel"
+    BackgroundImageSource="fundo.jpg"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <Label
+            Margin="0,50,0,0"
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="Véiculos"
+            TextColor="White" />
+        <CollectionView
+            x:Name="listaVeiculos"
+            Margin="10,0"
+            EmptyView="Sem veículos cadastrados"
+            ItemsSource="{Binding Veiculos}"
+            SelectionChanged="listaVeiculos_SelectionChanged"
+            SelectionChangedCommand="{Binding ItemSelectedCommand}"
+            SelectionChangedCommandParameter="{Binding Source={x:Reference listaVeiculos}, Path=SelectedItem}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Padding="10,0"
+                        x:DataType="model:VeiculoClienteModel"
+                        CornerRadius="10">
+                        <Grid
+                            Padding="5"
+                            ColumnDefinitions="auto,*,auto"
+                            RowDefinitions="auto,auto">
+
+                            <Label
+                                Grid.Column="0"
+                                HorizontalOptions="Start"
+                                Text="{Binding descricao_amigavel}" />
+                            <Label
+                                Grid.Row="1"
+                                HorizontalOptions="Start"
+                                Text="{Binding descricao_marca}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalOptions="Start"
+                                Text="{Binding descricao_modelo}" />
+
+                            <Image
+                                Grid.RowSpan="2"
+                                Grid.Column="2"
+                                HeightRequest="32"
+                                Source="ic_delete_black.png"
+                                WidthRequest="32">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:ViewListaVeiculosViewModel}}, Path=InativarCommand}" CommandParameter="{Binding .}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                        </Grid>
+                    </Frame>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <ActivityIndicator
+            HorizontalOptions="Center"
+            IsEnabled="{Binding Isbusy}"
+            IsRunning="{Binding Isbusy}"
+            IsVisible="{Binding Isbusy}"
+            VerticalOptions="Center"
+            Color="Blue" />
+
+        <Frame
+            Grid.RowSpan="2"
+            Margin="0,0,25,25"
+            Padding="0"
+            BackgroundColor="Blue"
+            CornerRadius="25"
+            HeightRequest="50"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            WidthRequest="50">
+            <Image Source="ic_plus.png" />
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding VeiculoCommand}" NumberOfTapsRequired="1" />
+            </Frame.GestureRecognizers>
+        </Frame>
+    </Grid>
+
 </ContentPage>

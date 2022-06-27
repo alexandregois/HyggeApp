@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HyggeAPP.ViewModels
@@ -242,6 +244,13 @@ namespace HyggeAPP.ViewModels
             }
         }
 
+        private bool _isUpdate;
+        public bool IsUpdate
+        {
+            get => _isUpdate;
+            set => SetProperty(ref _isUpdate, value);
+        }
+
         public ViewCadastroEnderecoViewModel(INavigationService navigationService)
             : base(navigationService)
         {
@@ -252,6 +261,7 @@ namespace HyggeAPP.ViewModels
             IsAtivo = false;
             IsPrincipal = false;
         }
+
 
         private async void Cancelar()
         {
@@ -316,7 +326,8 @@ namespace HyggeAPP.ViewModels
             IsTaskRunning = true;
 
             UsuarioEnderecoModel model = new UsuarioEnderecoModel();
-            model.usuario_rec_id = _app.Usuario.rec_id;
+            model.usuario_rec_id = Convert.ToInt32(Preferences.Get("rec_id", 0));
+            model.rec_id = 1000;
             model.cep = Cep;
             model.logradouro = Logradouro;
             model.bairro = Bairro;
@@ -334,13 +345,19 @@ namespace HyggeAPP.ViewModels
 
             try
             {
-
                 var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
 
-                var apiRetorno = await metodoAPI.PostCadEndereco(model, _app.Usuario.token);
+                if (IsUpdate)
+                {
+                    var apiRetorno = await metodoAPI.AtualizaCadEndereco(model, Preferences.Get("token", ""));
+                    UserDialogs.Instance.Alert("Endereço atualizado com sucesso.", "Aviso");
+                }
+                else
+                {
+                    var apiRetorno = await metodoAPI.PostCadEndereco(model, Preferences.Get("token", ""));
+                    UserDialogs.Instance.Alert("Endereço cadastrado com sucesso.", "Aviso");
 
-
-                UserDialogs.Instance.Alert("Endereço cadastrado com sucesso.", "Aviso");
+                }
 
                 LimpaCampos();
 
@@ -363,6 +380,10 @@ namespace HyggeAPP.ViewModels
                 IsTaskRunning = false;
                 return;
             }
+            finally
+            {
+                IsTaskRunning = false;
+            }
 
 
         }
@@ -383,26 +404,62 @@ namespace HyggeAPP.ViewModels
 
         private async void TextCepChanged()
         {
-
-            if (String.IsNullOrEmpty(Cep))
+            try
             {
-                UserDialogs.Instance.Alert("Favor informar o cep.", "AVISO");
-                return;
+                if (String.IsNullOrEmpty(Cep))
+                {
+                    UserDialogs.Instance.Alert("Favor informar o cep.", "AVISO");
+                    return;
+                }
+
+                IsTaskRunning = true;
+
+                var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
+
+                var apiRetorno = await metodoAPI.PostConsultaCEP(Preferences.Get("token", ""), Cep);
+
+                Logradouro = apiRetorno.logradouro;
+                Bairro = apiRetorno.bairro;
+                Cidade = apiRetorno.localidade;
+                Uf = apiRetorno.uf;
+
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            finally
+            {
+                IsTaskRunning = false;
             }
 
-            IsTaskRunning = true;
+        }
 
-            var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.GetNavigationMode() == Prism.Navigation.NavigationMode.Back)
+                return;
 
-            var apiRetorno = await metodoAPI.PostConsultaCEP(_app.Usuario.token, Cep);
+            var endereco = parameters.GetValue<UsuarioEnderecoModel>("endereco");
+            if (endereco is null)
+                return;
 
-            Logradouro = apiRetorno.logradouro;
-            Bairro = apiRetorno.bairro;
-            Cidade = apiRetorno.localidade;
-            Uf = apiRetorno.uf;
+            CarregarEndereco(endereco);
+        }
 
-            IsTaskRunning = false;
-
+        internal void CarregarEndereco(UsuarioEnderecoModel usuarioEndereco)
+        {
+            IsUpdate = true;
+            IsAtivo = usuarioEndereco.ativo > 0;
+            IsPrincipal = usuarioEndereco.principal;
+            Cep = usuarioEndereco.cep;
+            Descricao = usuarioEndereco.descricao_amigavel;
+            Logradouro = usuarioEndereco.logradouro;
+            Bairro = usuarioEndereco.bairro;
+            Cidade = usuarioEndereco.cidade;
+            Uf = usuarioEndereco.uf;
+            Numero = usuarioEndereco.numero;
+            Complemento = usuarioEndereco.complemento;
         }
     }
 }

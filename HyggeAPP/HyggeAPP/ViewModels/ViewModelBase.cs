@@ -11,6 +11,13 @@ namespace HyggeAPP.ViewModels
     {
         protected INavigationService NavigationService { get; private set; }
 
+        private bool _isBusy;
+        public bool Isbusy
+        {
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
+        }
+
         private string _title;
         public string Title
         {

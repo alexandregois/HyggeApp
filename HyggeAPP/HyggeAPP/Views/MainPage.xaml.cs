@@ -1,7 +1,4 @@
-﻿
-using System;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace HyggeAPP.Views
 {
@@ -12,6 +9,12 @@ namespace HyggeAPP.Views
             InitializeComponent();
 
             NavigationPage.SetHasNavigationBar(this, false);
+
+#if DEBUG
+            login.Text = "alaxbf";
+            senha.Text = "123";
+#endif
+
         }
 
     }

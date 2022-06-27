@@ -3,6 +3,7 @@ using HyggeAPP.Views;
 using Prism;
 using Prism.Ioc;
 using SharedTools.Models.WebPortal_API;
+using Xamarin.Essentials;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
@@ -24,11 +25,13 @@ namespace HyggeAPP
 
             Usuario = new UsuarioModel();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            if (string.IsNullOrEmpty(Preferences.Get("token", string.Empty)))
+                await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/MainPage");
+            else
+                await NavigationService.NavigateAsync("NavigationPage/ViewMenuPrincipal");
 
             //await NavigationService.NavigateAsync("NavigationPage/ViewCadastroEndereco");
 
-            //await NavigationService.NavigateAsync("NavigationPage/ViewMenuPrincipal");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

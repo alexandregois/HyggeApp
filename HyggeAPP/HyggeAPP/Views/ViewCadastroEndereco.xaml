@@ -1,20 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com" xmlns:enhancedEntry="clr-namespace:LeoJHarris.FormsPlugin.Abstractions;assembly=LeoJHarris.FormsPlugin.Abstractions"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="HyggeAPP.Views.ViewCadastroEndereco"
-             BackgroundImageSource="fundo.jpg">
+<ContentPage
+    x:Class="HyggeAPP.Views.ViewCadastroEndereco"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:enhancedEntry="clr-namespace:LeoJHarris.FormsPlugin.Abstractions;assembly=LeoJHarris.FormsPlugin.Abstractions"
+    xmlns:prism="http://prismlibrary.com"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundImageSource="fundo.jpg">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
 
         <!--<ActivityIndicator x:Name="defaultActivityIndicator"
                            VerticalOptions="CenterAndExpand" IsRunning="{Binding IsTaskRunning}"
                            HorizontalOptions="Fill" />-->
-        <ActivityIndicator x:Name="styledActivityIndicator"
-                           Color="Orange"
-                           VerticalOptions="CenterAndExpand" IsRunning="{Binding IsTaskRunning}"
-                           HorizontalOptions="Fill" />
+        <ActivityIndicator
+            x:Name="styledActivityIndicator"
+            HorizontalOptions="Fill"
+            IsRunning="{Binding IsTaskRunning}"
+            VerticalOptions="CenterAndExpand"
+            Color="Orange" />
 
         <Grid>
             <Grid.RowDefinitions>
@@ -25,19 +29,19 @@
                 <RowDefinition Height="3" />
                 <RowDefinition Height="45" />
                 <RowDefinition Height="3" />
-                <!--6-->
+                <!--  6  -->
                 <RowDefinition Height="45" />
                 <RowDefinition Height="3" />
                 <RowDefinition Height="45" />
                 <RowDefinition Height="3" />
-                <!--10-->
+                <!--  10  -->
                 <RowDefinition Height="45" />
                 <RowDefinition Height="3" />
                 <RowDefinition Height="45" />
 
                 <RowDefinition Height="3" />
                 <RowDefinition Height="45" />
-                <!--15-->
+                <!--  15  -->
                 <RowDefinition Height="3" />
                 <RowDefinition Height="45" />
 
@@ -51,81 +55,250 @@
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="1" Text="Cadastro de Endereço" FontAttributes="Bold" FontSize="Large" TextColor="White" HorizontalTextAlignment="Center"></Label>
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalTextAlignment="Center"
+                Text="Endereço"
+                TextColor="White" />
 
-            <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+            <StackLayout
+                Grid.Row="1"
+                Grid.Column="1"
+                Orientation="Horizontal">
 
                 <CheckBox IsChecked="{Binding Path=IsAtivo}" />
-                <Label Text="Ativo" FontSize="Small" FontAttributes="Bold" Margin="0,7,0,0" TextColor="White"></Label>
+                <Label
+                    Margin="0,7,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    Text="Ativo"
+                    TextColor="White" />
 
-                <CheckBox IsChecked="{Binding Path=IsPrincipal}" Margin="15,0,0,0"/>
-                <Label Text="Principal" FontSize="Small" FontAttributes="Bold" Margin="0,7,0,0" TextColor="White"></Label>
+                <CheckBox Margin="15,0,0,0" IsChecked="{Binding Path=IsPrincipal}" />
+                <Label
+                    Margin="0,7,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    Text="Principal"
+                    TextColor="White" />
 
             </StackLayout>
 
-            <Button Grid.Row="3" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
-            <enhancedEntry:EnhancedEntry Placeholder="descrição" Grid.Row="3" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
-                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
-                                         BackgroundColor="Transparent" Text="{Binding Path=Descricao}"></enhancedEntry:EnhancedEntry>
+            <Button
+                Grid.Row="3"
+                Grid.Column="1"
+                BackgroundColor="White"
+                BorderColor="White"
+                BorderWidth="1"
+                CornerRadius="17" />
+            <enhancedEntry:EnhancedEntry
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="5"
+                BackgroundColor="Transparent"
+                FontSize="Small"
+                HorizontalOptions="Start"
+                MaxLength="250"
+                Placeholder="descrição"
+                PlaceholderColor="Gray"
+                Text="{Binding Path=Descricao}"
+                WidthRequest="250" />
 
-            <Button CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White" Grid.Row="5" Grid.Column="1"></Button>
-            <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Button
+                Grid.Row="5"
+                Grid.Column="1"
+                BackgroundColor="White"
+                BorderColor="White"
+                BorderWidth="1"
+                CornerRadius="17" />
+            <StackLayout
+                Grid.Row="5"
+                Grid.Column="1"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal">
 
-                <enhancedEntry:EnhancedEntry x:Name="txtCep" Placeholder="cep" HorizontalOptions="Start" WidthRequest="185" Margin="5"
-                  FontSize="Small" PlaceholderColor="Gray" MaxLength="185"
-                  BackgroundColor="Transparent" Text="{Binding Path=Cep}">
-                </enhancedEntry:EnhancedEntry>
+                <enhancedEntry:EnhancedEntry
+                    x:Name="txtCep"
+                    Margin="5"
+                    BackgroundColor="Transparent"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    MaxLength="185"
+                    Placeholder="cep"
+                    PlaceholderColor="Gray"
+                    Text="{Binding Path=Cep}"
+                    WidthRequest="185" />
 
-                <Button CornerRadius="17" BorderWidth="1" ImageSource="lupa.png" Opacity="50" BackgroundColor="Transparent" FontSize="Large" WidthRequest="50"
-                        Command="{Binding Path=TextCepChangedCommand}"></Button>
+                <Button
+                    BackgroundColor="Transparent"
+                    BorderWidth="1"
+                    Command="{Binding Path=TextCepChangedCommand}"
+                    CornerRadius="17"
+                    FontSize="Large"
+                    ImageSource="lupa.png"
+                    Opacity="50"
+                    WidthRequest="50" />
             </StackLayout>
 
 
-            <Button Grid.Row="7" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
-            <enhancedEntry:EnhancedEntry Placeholder="logradouro" Grid.Row="7" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
-                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
-                                         BackgroundColor="Transparent" Text="{Binding Path=Logradouro}"></enhancedEntry:EnhancedEntry>
+            <Button
+                Grid.Row="7"
+                Grid.Column="1"
+                BackgroundColor="White"
+                BorderColor="White"
+                BorderWidth="1"
+                CornerRadius="17" />
+            <enhancedEntry:EnhancedEntry
+                Grid.Row="7"
+                Grid.Column="1"
+                Margin="5"
+                BackgroundColor="Transparent"
+                FontSize="Small"
+                HorizontalOptions="Start"
+                MaxLength="250"
+                Placeholder="logradouro"
+                PlaceholderColor="Gray"
+                Text="{Binding Path=Logradouro}"
+                WidthRequest="250" />
 
 
-            <Button Grid.Row="9" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
-            <enhancedEntry:EnhancedEntry Placeholder="bairro" Grid.Row="9" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
-                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
-                                         BackgroundColor="Transparent" Text="{Binding Path=Bairro}"></enhancedEntry:EnhancedEntry>
+            <Button
+                Grid.Row="9"
+                Grid.Column="1"
+                BackgroundColor="White"
+                BorderColor="White"
+                BorderWidth="1"
+                CornerRadius="17" />
+            <enhancedEntry:EnhancedEntry
+                Grid.Row="9"
+                Grid.Column="1"
+                Margin="5"
+                BackgroundColor="Transparent"
+                FontSize="Small"
+                HorizontalOptions="Start"
+                MaxLength="250"
+                Placeholder="bairro"
+                PlaceholderColor="Gray"
+                Text="{Binding Path=Bairro}"
+                WidthRequest="250" />
 
-            <Button Grid.Row="11" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
-            <enhancedEntry:EnhancedEntry Placeholder="cidade" Grid.Row="11" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
-                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
-                                         BackgroundColor="Transparent" Text="{Binding Path=Cidade}"></enhancedEntry:EnhancedEntry>
+            <Button
+                Grid.Row="11"
+                Grid.Column="1"
+                BackgroundColor="White"
+                BorderColor="White"
+                BorderWidth="1"
+                CornerRadius="17" />
+            <enhancedEntry:EnhancedEntry
+                Grid.Row="11"
+                Grid.Column="1"
+                Margin="5"
+                BackgroundColor="Transparent"
+                FontSize="Small"
+                HorizontalOptions="Start"
+                MaxLength="250"
+                Placeholder="cidade"
+                PlaceholderColor="Gray"
+                Text="{Binding Path=Cidade}"
+                WidthRequest="250" />
 
 
-            <Button Grid.Row="13" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
-            <enhancedEntry:EnhancedEntry Placeholder="uf" Grid.Row="13" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
-                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
-                                         BackgroundColor="Transparent" Text="{Binding Path=Uf}"></enhancedEntry:EnhancedEntry>
+            <Button
+                Grid.Row="13"
+                Grid.Column="1"
+                BackgroundColor="White"
+                BorderColor="White"
+                BorderWidth="1"
+                CornerRadius="17" />
+            <enhancedEntry:EnhancedEntry
+                Grid.Row="13"
+                Grid.Column="1"
+                Margin="5"
+                BackgroundColor="Transparent"
+                FontSize="Small"
+                HorizontalOptions="Start"
+                MaxLength="250"
+                Placeholder="uf"
+                PlaceholderColor="Gray"
+                Text="{Binding Path=Uf}"
+                WidthRequest="250" />
 
-            <Button Grid.Row="15" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
-            <enhancedEntry:EnhancedEntry Placeholder="numero" Grid.Row="15" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
-                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
-                                         BackgroundColor="Transparent" Text="{Binding Path=Numero}"></enhancedEntry:EnhancedEntry>
+            <Button
+                Grid.Row="15"
+                Grid.Column="1"
+                BackgroundColor="White"
+                BorderColor="White"
+                BorderWidth="1"
+                CornerRadius="17" />
+            <enhancedEntry:EnhancedEntry
+                Grid.Row="15"
+                Grid.Column="1"
+                Margin="5"
+                BackgroundColor="Transparent"
+                FontSize="Small"
+                HorizontalOptions="Start"
+                MaxLength="250"
+                Placeholder="numero"
+                PlaceholderColor="Gray"
+                Text="{Binding Path=Numero}"
+                WidthRequest="250" />
 
 
-            <Button Grid.Row="17" Grid.Column="1" CornerRadius="17" BorderWidth="1" BackgroundColor="White" BorderColor="White"></Button>
-            <enhancedEntry:EnhancedEntry Placeholder="complemento" Grid.Row="17" Grid.Column="1" HorizontalOptions="Start" WidthRequest="250" Margin="5"
-                                         FontSize="Small" PlaceholderColor="Gray" MaxLength="250" 
-                                         BackgroundColor="Transparent" Text="{Binding Path=Complemento}"></enhancedEntry:EnhancedEntry>
+            <Button
+                Grid.Row="17"
+                Grid.Column="1"
+                BackgroundColor="White"
+                BorderColor="White"
+                BorderWidth="1"
+                CornerRadius="17" />
+            <enhancedEntry:EnhancedEntry
+                Grid.Row="17"
+                Grid.Column="1"
+                Margin="5"
+                BackgroundColor="Transparent"
+                FontSize="Small"
+                HorizontalOptions="Start"
+                MaxLength="250"
+                Placeholder="complemento"
+                PlaceholderColor="Gray"
+                Text="{Binding Path=Complemento}"
+                WidthRequest="250" />
 
             <!--<Label Grid.Row="14" Grid.Column="1" Text="* campos obrigatórios" FontSize="Small" TextColor="Red" HorizontalTextAlignment="Center"></Label>-->
 
 
-            <StackLayout Grid.Row="19" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <StackLayout
+                Grid.Row="19"
+                Grid.Column="1"
+                HorizontalOptions="CenterAndExpand"
+                Orientation="Horizontal">
 
-                <Button x:Name="btnSalvar"  CornerRadius="5" BorderWidth="3" TextColor="DarkRed" BackgroundColor="Transparent" Text="Salvar" FontSize="Medium"
+                <Button
+                    x:Name="btnSalvar"
+                    BackgroundColor="Transparent"
+                    BorderWidth="3"
                     Command="{Binding Path=SalvarCommand}"
-                    FontAttributes="Bold"></Button>
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="Salvar"
+                    TextColor="DarkRed" />
 
-                <Button x:Name="btnCancelar" Margin="15,0,0,0"  CornerRadius="5" BorderWidth="3" TextColor="DarkRed" BackgroundColor="Transparent" Text="Cancelar" FontSize="Medium"
-                        Command="{Binding Path=CancelarCommand}"
-                        FontAttributes="Bold"></Button>
+
+                <Button
+                    x:Name="btnCancelar"
+                    Margin="15,0,0,0"
+                    BackgroundColor="Transparent"
+                    BorderWidth="3"
+                    Command="{Binding Path=CancelarCommand}"
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="Cancelar"
+                    TextColor="DarkRed" />
 
             </StackLayout>
 

@@ -1,21 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com" xmlns:viewmodels="clr-namespace:HyggeAPP.ViewModels" x:DataType="viewmodels:ViewMenuPrincipalViewModel"
-             NavigationPage.HasNavigationBar="False"
-             x:Class="HyggeAPP.Views.ViewMenuPrincipal">
+<ContentPage
+    x:Class="HyggeAPP.Views.ViewMenuPrincipal"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:viewmodels="clr-namespace:HyggeAPP.ViewModels"
+    x:DataType="viewmodels:ViewMenuPrincipalViewModel"
+    NavigationPage.HasNavigationBar="False">
 
     <ScrollView HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
-        
+
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
 
             <!--<ActivityIndicator x:Name="defaultActivityIndicator"
                            VerticalOptions="CenterAndExpand" IsRunning="{Binding IsTaskRunning}"
                            HorizontalOptions="Fill" />-->
-            <ActivityIndicator x:Name="styledActivityIndicator"
-                           Color="Orange"
-                           VerticalOptions="CenterAndExpand" IsRunning="{Binding IsTaskRunning}"
-                           HorizontalOptions="Fill" />
+            <ActivityIndicator
+                x:Name="styledActivityIndicator"
+                HorizontalOptions="Fill"
+                IsRunning="{Binding IsTaskRunning}"
+                VerticalOptions="CenterAndExpand"
+                Color="Orange" />
 
             <Grid Margin="-9,0,0,0">
                 <Grid.RowDefinitions>
@@ -38,36 +43,123 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Label x:Name="lblNome" TextColor="DarkSlateBlue" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Nome}" FontSize="Large" FontAttributes="Bold"></Label>
-                <Label x:Name="lblNome2" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Nome1}" FontSize="Large"></Label>
+                <Label
+                    x:Name="lblNome"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="{Binding Nome}"
+                    TextColor="DarkSlateBlue" />
+                <Label
+                    x:Name="lblNome2"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    FontSize="Large"
+                    Text="{Binding Nome1}" />
 
 
-                <Button BackgroundColor="DarkSlateBlue" TextColor="White" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" CornerRadius="10" HorizontalOptions="FillAndExpand"
-                    ></Button>
-                <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" WidthRequest="250">
-                    <Image Source="car_wash" Margin="25,0,15,0" HeightRequest="50"></Image>
-                    <Button x:Name="btnAgendarLavagem" BackgroundColor="Transparent" TextColor="White" FontAttributes="Bold" HorizontalOptions="End"
-                        Text="Agendar uma lavagem"></Button>
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="DarkSlateBlue"
+                    CornerRadius="10"
+                    HorizontalOptions="FillAndExpand"
+                    TextColor="White" />
+                <StackLayout
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    WidthRequest="250">
+                    <Image
+                        Margin="25,0,15,0"
+                        HeightRequest="50"
+                        Source="car_wash" />
+                    <Button
+                        x:Name="btnAgendarLavagem"
+                        BackgroundColor="Transparent"
+                        FontAttributes="Bold"
+                        HorizontalOptions="End"
+                        Text="Agendar uma lavagem"
+                        TextColor="White" />
                 </StackLayout>
 
-                <Button BackgroundColor="DarkOliveGreen" TextColor="White" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" CornerRadius="10" HorizontalOptions="FillAndExpand"
-            ></Button>
-                <StackLayout Grid.Row="6" Grid.Column="1" Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" WidthRequest="250">
-                    <Image Source="money" Margin="25,0,15,0" HeightRequest="50"></Image>
-                    <Button x:Name="btnParceiro" BackgroundColor="Transparent" TextColor="White" HorizontalOptions="End" FontAttributes="Bold"
-                        Text="Quero ser parceiro"></Button>
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="DarkOliveGreen"
+                    CornerRadius="10"
+                    HorizontalOptions="FillAndExpand"
+                    TextColor="White" />
+                <StackLayout
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    WidthRequest="250">
+                    <Image
+                        Margin="25,0,15,0"
+                        HeightRequest="50"
+                        Source="money" />
+                    <Button
+                        x:Name="btnParceiro"
+                        BackgroundColor="Transparent"
+                        FontAttributes="Bold"
+                        HorizontalOptions="End"
+                        Text="Quero ser parceiro"
+                        TextColor="White" />
                 </StackLayout>
 
 
-                <Label Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Text="Na dúvida?" FontSize="Small" FontAttributes="Bold" TextColor="Black"></Label>
-                <Label Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Text="Olha a opinião de um dos nossos clientes." FontSize="Small" TextColor="Black"></Label>
+                <Label
+                    Grid.Row="8"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    Text="Na dúvida?"
+                    TextColor="Black" />
+                <Label
+                    Grid.Row="9"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    FontSize="Small"
+                    Text="Olha a opinião de um dos nossos clientes."
+                    TextColor="Black" />
 
 
-                <Button BackgroundColor="DarkOrange" TextColor="White" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-            ></Button>
-                <StackLayout Grid.Row="10" Grid.Column="1" Orientation="Vertical" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand">
-                    <Image Source="rating" Margin="15,15,0,0" HeightRequest="15" HorizontalOptions="StartAndExpand"></Image>
-                    <Label  Text="Parceiro bem detalhista" FontSize="Small" TextColor="White" Margin="15,0,0,0"></Label>
+                <Button
+                    Grid.Row="10"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="DarkOrange"
+                    CornerRadius="10"
+                    HorizontalOptions="FillAndExpand"
+                    TextColor="White"
+                    VerticalOptions="FillAndExpand" />
+                <StackLayout
+                    Grid.Row="10"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="StartAndExpand"
+                    Orientation="Vertical">
+                    <Image
+                        Margin="15,15,0,0"
+                        HeightRequest="15"
+                        HorizontalOptions="StartAndExpand"
+                        Source="rating" />
+                    <Label
+                        Margin="15,0,0,0"
+                        FontSize="Small"
+                        Text="Parceiro bem detalhista"
+                        TextColor="White" />
                 </StackLayout>
 
 
@@ -86,17 +178,47 @@
 
 
 
-                <Image Grid.Row="0" Grid.Column="0" Source="window" Margin="3"></Image>
-                <Button BackgroundColor="Transparent" TextColor="White" Grid.Row="0" Grid.Column="0" CornerRadius="10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-            ></Button>
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="3"
+                    Source="window" />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"
+                    CornerRadius="10"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
 
-                <Image Grid.Row="0" Grid.Column="1" Source="calendar"></Image>
-                <Button BackgroundColor="Transparent" TextColor="White" Grid.Row="0" Grid.Column="1" CornerRadius="10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-            ></Button>
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Source="calendar" />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    CornerRadius="10"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
 
-                <Image Grid.Row="0" Grid.Column="2" Source="menu"></Image>
-                <Button x:Name="btnMenu" BackgroundColor="Transparent" TextColor="White" Grid.Row="0" Grid.Column="2" CornerRadius="10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Command="{Binding Path=OpenMenuCommand}"
-            ></Button>
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Source="menu" />
+                <Button
+                    x:Name="btnMenu"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    BackgroundColor="Transparent"
+                    Command="{Binding Path=OpenMenuCommand}"
+                    CornerRadius="10"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
 
 
 

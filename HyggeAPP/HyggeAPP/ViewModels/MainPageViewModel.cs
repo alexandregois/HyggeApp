@@ -98,11 +98,11 @@ namespace HyggeAPP.ViewModels
             _app.Usuario.cod_usuario = Preferences.Get("codusuario", null);
             _app.Usuario.rec_id = Convert.ToInt32(Preferences.Get("recid", null));
 
-            if (!String.IsNullOrEmpty(_app.Usuario.nome)
-                && !String.IsNullOrEmpty(_app.Usuario.token)
-                && !String.IsNullOrEmpty(_app.Usuario.cod_usuario)
-                )
-                NavigationService.NavigateAsync("ViewMenuPrincipal");
+            //if (!String.IsNullOrEmpty(_app.Usuario.nome)
+            //    && !String.IsNullOrEmpty(_app.Usuario.token)
+            //    && !String.IsNullOrEmpty(_app.Usuario.cod_usuario)
+            //    )
+            //    NavigationService.NavigateAsync("ViewMenuPrincipal");
 
 
         }
@@ -115,7 +115,6 @@ namespace HyggeAPP.ViewModels
         public async void LoginAsync()
         {
 
-#if !DEBUG
             if (String.IsNullOrEmpty(Usuario))
             {
                 UserDialogs.Instance.Alert("Favor informar o usuário.", "AVISO");
@@ -127,23 +126,14 @@ namespace HyggeAPP.ViewModels
                 UserDialogs.Instance.Alert("Favor informar a senha.", "AVISO");
                 return;
             }
-#endif
 
             IsTaskRunning = true;
 
-            UsuarioModel userUsuario = new UsuarioModel();
-
-#if !DEBUG
-            
-            userUsuario.login = Usuario;
-            userUsuario.password = Senha;
-#endif
-
-#if DEBUG
-
-            userUsuario.login = "alaxbf";
-            userUsuario.password = "123";
-#endif
+            UsuarioModel userUsuario = new UsuarioModel
+            {
+                login = Usuario,
+                password = Senha
+            };
 
             try
             {

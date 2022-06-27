@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using HyggeAPP.Interface;
+using HyggeAPP.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -9,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HyggeAPP.ViewModels
@@ -59,6 +62,18 @@ namespace HyggeAPP.ViewModels
             }
         }
 
+        private DelegateCommand _enderecoCommand;
+        public DelegateCommand EnderecoCommand =>
+            _enderecoCommand ?? (_enderecoCommand = new DelegateCommand(async () => await ExecuteEnderecoCommand()));
+
+        private DelegateCommand<UsuarioEnderecoModel> _inativarCommand;
+        public DelegateCommand<UsuarioEnderecoModel> InativarCommand =>
+            _inativarCommand ?? (_inativarCommand = new DelegateCommand<UsuarioEnderecoModel>(async (item) => await ExecuteInativarCommand(item)));
+
+
+        private DelegateCommand<UsuarioEnderecoModel> _itemSelectedCommand;
+        public DelegateCommand<UsuarioEnderecoModel> ItemSelectedCommand =>
+            _itemSelectedCommand ?? (_itemSelectedCommand = new DelegateCommand<UsuarioEnderecoModel>(async (item) => await ExecuteItemSelectedCommand(item)));
 
         public ViewListaEnderecosViewModel(INavigationService navigationService)
             : base(navigationService)
@@ -73,12 +88,15 @@ namespace HyggeAPP.ViewModels
 
                 var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
 
-                var resultRetorno = await metodoAPI.PostListaEndereco(_app.Usuario.token, _app.Usuario.rec_id);
+                var resultRetorno = await metodoAPI.PostListaEndereco(Preferences.Get("token", ""), Preferences.Get("rec_id", 0));
 
                 IsTaskRunning = false;
 
                 if (resultRetorno.Count() > 0)
+                {
+                    ListaEnderecos?.Clear();
                     ListaEnderecos = resultRetorno;
+                }
 
 
                 //await NavigationService.NavigateAsync("MainPage");
@@ -97,6 +115,47 @@ namespace HyggeAPP.ViewModels
                 //throw;
                 IsTaskRunning = false;
                 return;
+            }
+        }
+
+
+        private async Task ExecuteEnderecoCommand()
+            => await NavigationService.NavigateAsync(nameof(ViewCadastroEndereco));
+
+        private async Task ExecuteItemSelectedCommand(UsuarioEnderecoModel item)
+        {
+            if (item is null)
+                return;
+
+            var parametros = new NavigationParameters();
+            parametros.Add("endereco", item);
+
+            await NavigationService.NavigateAsync(nameof(ViewCadastroEndereco), parametros);
+        }
+
+
+        private async Task ExecuteInativarCommand(UsuarioEnderecoModel item)
+        {
+            try
+            {
+                IsTaskRunning = false;
+
+                if (item is null)
+                    return;
+
+                var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
+
+                var resultRetorno = await metodoAPI.InativarCadEndereco(item, Preferences.Get("token", ""));
+                GetEnderecosCliente();
+                UserDialogs.Instance.Alert("Endereço desativado com sucesso!", "Aviso");
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.Alert("Ocorreu um erro. Por favor, tente novamente.", "Aviso");
+            }
+            finally
+            {
+                IsTaskRunning = false;
             }
         }
     }

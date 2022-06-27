@@ -8,5 +8,10 @@ namespace HyggeAPP.Views
         {
             InitializeComponent();
         }
+
+        private void listaVeiculos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            listaVeiculos.SelectedItem = null;
+        }
     }
 }

@@ -3,6 +3,7 @@ using HyggeAPP.Views;
 using Prism;
 using Prism.Ioc;
 using SharedTools.Models.WebPortal_API;
+using System;
 using Xamarin.Essentials;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
@@ -25,12 +26,31 @@ namespace HyggeAPP
 
             Usuario = new UsuarioModel();
 
-            if (string.IsNullOrEmpty(Preferences.Get("token", string.Empty)))
-                await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/MainPage");
-            else
-                await NavigationService.NavigateAsync("NavigationPage/ViewMenuPrincipal");
 
-            //await NavigationService.NavigateAsync("NavigationPage/ViewCadastroEndereco");
+            //string strNome = Preferences.Get("nome", null);
+            //string strToken = Preferences.Get("token", null);
+            //string strCodUsuario = Preferences.Get("codusuario", null);
+            //string strRecId = Preferences.Get("recid", null).ToString();
+
+
+            //if (!String.IsNullOrEmpty(strNome)
+            //    && !String.IsNullOrEmpty(strToken)
+            //    && !String.IsNullOrEmpty(strCodUsuario)
+            //    && !String.IsNullOrEmpty(strRecId))
+            //{
+            //    Usuario.nome = Preferences.Get("nome", null);
+            //    Usuario.token = Preferences.Get("token", null);
+            //    Usuario.cod_usuario = Preferences.Get("codusuario", null);
+            //    Usuario.rec_id = Convert.ToInt32(Preferences.Get("recid", null));
+            //}
+
+            //if (string.IsNullOrEmpty(Preferences.Get("token", string.Empty)))
+            //    await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/MainPage");
+            //else
+            //    await NavigationService.NavigateAsync("NavigationPage/ViewMenuPrincipal");
+
+            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            //await NavigationService.NavigateAsync("NavigationPage/ViewMenuPrincipal");
 
         }
 
@@ -48,6 +68,7 @@ namespace HyggeAPP
             containerRegistry.RegisterForNavigation<ViewListaEnderecos, ViewListaEnderecosViewModel>();
             containerRegistry.RegisterForNavigation<ViewListaVeiculos, ViewListaVeiculosViewModel>();
             containerRegistry.RegisterForNavigation<ViewListaCartoes, ViewListaCartoesViewModel>();
+            containerRegistry.RegisterForNavigation<ViewRecuperarSenha, ViewRecuperarSenhaViewModel>();
         }
     }
 }

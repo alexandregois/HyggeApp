@@ -7,13 +7,38 @@ using Refit;
 using SharedTools.Models.WebPortal_API;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace HyggeAPP.ViewModels
 {
     public class ViewListaVeiculosViewModel : ViewModelBase
     {
+        public App _app => (Application.Current as App);
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private bool isTaskRunning;
+        public bool IsTaskRunning
+        {
+            get { return this.isTaskRunning; }
+            set
+            {
+                if (value != this.isTaskRunning)
+                {
+                    this.isTaskRunning = value;
+
+                    var handler = this.PropertyChanged;
+                    if (handler != null)
+                    {
+                        handler(this,
+                            new PropertyChangedEventArgs("IsTaskRunning"));
+                    }
+                }
+            }
+        }
 
         public ObservableCollection<VeiculoClienteModel> Veiculos { get; set; } = new ObservableCollection<VeiculoClienteModel>();
 
@@ -50,12 +75,16 @@ namespace HyggeAPP.ViewModels
                 Isbusy = true;
                 var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
 
-                var result = await metodoAPI.PostListaVeiculo(Preferences.Get("token", ""), Convert.ToInt32(Preferences.Get("rec_id", 0)));
+                var result = await metodoAPI.PostListaVeiculo(_app.Usuario.token, _app.Usuario.rec_id);
 
                 if (result is null)
                     return;
 
-                Veiculos = new ObservableCollection<VeiculoClienteModel>(result);
+                Veiculos?.Clear();
+                result.ForEach(x =>
+                {
+                    Veiculos.Add(x);
+                });
             }
             catch (Exception ex)
             {
@@ -89,11 +118,20 @@ namespace HyggeAPP.ViewModels
                 if (item is null)
                     return;
 
-                var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
 
-                var resultRetorno = await metodoAPI.InativarVeiculo(item, Preferences.Get("token", ""));
-                await CarregarVeiculos();
-                UserDialogs.Instance.Alert("Veículo desativado com sucesso!", "Aviso");
+                var check = await UserDialogs.Instance.ConfirmAsync("Deseja realmente desativar o veículo?", "Aviso", "Ok", "Cancel");
+                if (check)
+                {
+                    var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
+
+                    var resultRetorno = await metodoAPI.InativarVeiculo(item, Preferences.Get("token", ""));
+                    await CarregarVeiculos();
+                    UserDialogs.Instance.Alert("Veículo desativado com sucesso!", "Aviso");
+                }
+                else
+                { }
+
+
             }
             catch (Exception ex)
             {

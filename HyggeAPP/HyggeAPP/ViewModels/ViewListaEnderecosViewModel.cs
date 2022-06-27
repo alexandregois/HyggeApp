@@ -81,16 +81,18 @@ namespace HyggeAPP.ViewModels
             GetEnderecosCliente();
         }
 
-        public async void GetEnderecosCliente()
+        public async Task GetEnderecosCliente()
         {
             try
             {
 
+                IsTaskRunning = true;
+
                 var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
 
-                var resultRetorno = await metodoAPI.PostListaEndereco(Preferences.Get("token", ""), Preferences.Get("rec_id", 0));
+                //var resultRetorno = await metodoAPI.PostListaEndereco(Preferences.Get("token", ""), Preferences.Get("rec_id", 0));
+                var resultRetorno = await metodoAPI.PostListaEndereco(_app.Usuario.token, _app.Usuario.rec_id);
 
-                IsTaskRunning = false;
 
                 if (resultRetorno.Count() > 0)
                 {
@@ -98,10 +100,9 @@ namespace HyggeAPP.ViewModels
                     ListaEnderecos = resultRetorno;
                 }
 
+                IsTaskRunning = false;
 
-                //await NavigationService.NavigateAsync("MainPage");
-
-
+         
             }
             catch (Exception e)
             {
@@ -143,11 +144,19 @@ namespace HyggeAPP.ViewModels
                 if (item is null)
                     return;
 
-                var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
+                var check = await UserDialogs.Instance.ConfirmAsync("Deseja realmente desativar o endereço?", "Aviso", "Ok", "Cancel");
+                if (check)
+                {
+                    var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
 
-                var resultRetorno = await metodoAPI.InativarCadEndereco(item, Preferences.Get("token", ""));
-                GetEnderecosCliente();
-                UserDialogs.Instance.Alert("Endereço desativado com sucesso!", "Aviso");
+                    var resultRetorno = await metodoAPI.InativarCadEndereco(item, Preferences.Get("token", ""));
+                    await GetEnderecosCliente();
+                    UserDialogs.Instance.Alert("Endereço desativado com sucesso!", "Aviso");
+                }
+                else
+                { }
+
+                
             }
             catch (Exception ex)
             {

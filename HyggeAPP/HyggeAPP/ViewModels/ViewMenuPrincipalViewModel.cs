@@ -85,15 +85,15 @@ namespace HyggeAPP.ViewModels
             : base(navigationService)
         {
 
-            //Nome = "Olá " + Preferences.Get("nome", "default_value") + " !";
-            if (_app.Usuario.nome == null)
-                NavigationService.NavigateAsync("MainPage");
-            else
-            {
+            ////Nome = "Olá " + Preferences.Get("nome", "default_value") + " !";
+            //if (_app.Usuario.nome == null)
+            //    NavigationService.NavigateAsync("MainPage");
+            //else
+            //{
                 Nome = "Olá " + _app.Usuario.nome + " !";
                 Nome1 = "Podemos cuidar do seu carro?";
-            }
-            
+            //}
+
             OpenEnderecoCommand = new DelegateCommand(OpenEnderecoAsync);
             OpenMenuCommand = new DelegateCommand(OpenMenu);
         }

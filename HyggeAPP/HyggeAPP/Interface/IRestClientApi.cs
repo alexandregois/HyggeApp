@@ -45,5 +45,20 @@ namespace HyggeAPP.Interface
         [Post("/api/VeiculoCliente/Inativar?token={token}")]
         Task<VeiculoClienteModel> InativarVeiculo([Body] VeiculoClienteModel veiculoCliente, [AliasAs("token")] string token);
 
+        [Post("/api/MarcaVeiculos/Listar?token={token}")]
+        Task<List<MarcaVeiculoModel>> PostVeiculoListaMarcas([AliasAs("token")] string token);
+
+        [Post("/api/MarcaVeiculos/ListarModelosBy_marca_rec_id?token={token}&marca_rec_id={marca_rec_id}")]
+        Task<List<MarcaVeiculoModel>> PostVeiculoListaModelos([AliasAs("token")] string token, [AliasAs("marca_rec_id")] int marca_rec_id);
+
+        [Post("/api/MarcaVeiculos/Listar?token={token}")]
+        Task<List<MarcaVeiculoModel>> ListarMarcasVeiculos([AliasAs("token")] string token);
+
+        [Post("/api/MarcaVeiculos/ListarModelosBy_marca_rec_id?token={token}&marca_rec_id={marca_rec_id}")]
+        Task<List<ModeloVeiculoModel>> ListarModelosVeiculosByMarca([AliasAs("token")] string token, [AliasAs("marca_rec_id")] int marca_rec_id);
+
+
+
+
     }
 }

@@ -20,42 +20,44 @@
             VerticalOptions="CenterAndExpand"
             Color="Orange" />
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="57" />
-                <RowDefinition Height="35" />
-                <RowDefinition Height="3" />
-                <RowDefinition Height="45" />
-                <RowDefinition Height="3" />
-                <RowDefinition Height="45" />
-                <RowDefinition Height="3" />
-                <!--  6  -->
-                <RowDefinition Height="45" />
-                <RowDefinition Height="3" />
-                <RowDefinition Height="45" />
-                <RowDefinition Height="3" />
-                <!--  10  -->
-                <RowDefinition Height="45" />
-                <RowDefinition Height="3" />
-                <RowDefinition Height="45" />
+        <ScrollView>
 
-                <RowDefinition Height="3" />
-                <RowDefinition Height="45" />
-                <!--  15  -->
-                <RowDefinition Height="3" />
-                <RowDefinition Height="45" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="57" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="45" />
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="45" />
+                    <RowDefinition Height="3" />
+                    <!--  6  -->
+                    <RowDefinition Height="45" />
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="45" />
+                    <RowDefinition Height="3" />
+                    <!--  10  -->
+                    <RowDefinition Height="45" />
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="45" />
 
-                <RowDefinition Height="15" />
-                <RowDefinition Height="45" />
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="45" />
+                    <!--  15  -->
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="45" />
 
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="250" />
-                <ColumnDefinition Width="50" />
-            </Grid.ColumnDefinitions>
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="45" />
 
-            <Label
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+
+                <Label
                 Grid.Row="0"
                 Grid.Column="1"
                 FontAttributes="Bold"
@@ -64,37 +66,37 @@
                 Text="Endereço"
                 TextColor="White" />
 
-            <StackLayout
+                <StackLayout
                 Grid.Row="1"
                 Grid.Column="1"
                 Orientation="Horizontal">
 
-                <CheckBox IsChecked="{Binding Path=IsAtivo}" />
-                <Label
+                    <CheckBox IsChecked="{Binding Path=IsAtivo}" />
+                    <Label
                     Margin="0,7,0,0"
                     FontAttributes="Bold"
                     FontSize="Small"
                     Text="Ativo"
                     TextColor="White" />
 
-                <CheckBox Margin="15,0,0,0" IsChecked="{Binding Path=IsPrincipal}" />
-                <Label
+                    <CheckBox Margin="15,0,0,0" IsChecked="{Binding Path=IsPrincipal}" />
+                    <Label
                     Margin="0,7,0,0"
                     FontAttributes="Bold"
                     FontSize="Small"
                     Text="Principal"
                     TextColor="White" />
 
-            </StackLayout>
+                </StackLayout>
 
-            <Button
+                <Button
                 Grid.Row="3"
                 Grid.Column="1"
                 BackgroundColor="White"
                 BorderColor="White"
                 BorderWidth="1"
                 CornerRadius="17" />
-            <enhancedEntry:EnhancedEntry
+                <enhancedEntry:EnhancedEntry
                 Grid.Row="3"
                 Grid.Column="1"
                 Margin="5"
@@ -107,20 +109,20 @@
                 Text="{Binding Path=Descricao}"
                 WidthRequest="250" />
 
-            <Button
+                <Button
                 Grid.Row="5"
                 Grid.Column="1"
                 BackgroundColor="White"
                 BorderColor="White"
                 BorderWidth="1"
                 CornerRadius="17" />
-            <StackLayout
+                <StackLayout
                 Grid.Row="5"
                 Grid.Column="1"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal">
 
-                <enhancedEntry:EnhancedEntry
+                    <enhancedEntry:EnhancedEntry
                     x:Name="txtCep"
                     Margin="5"
                     BackgroundColor="Transparent"
@@ -132,7 +134,7 @@
                     Text="{Binding Path=Cep}"
                     WidthRequest="185" />
 
-                <Button
+                    <Button
                     BackgroundColor="Transparent"
                     BorderWidth="1"
                     Command="{Binding Path=TextCepChangedCommand}"
@@ -141,17 +143,17 @@
                     ImageSource="lupa.png"
                     Opacity="50"
                     WidthRequest="50" />
-            </StackLayout>
+                </StackLayout>
 
 
-            <Button
+                <Button
                 Grid.Row="7"
                 Grid.Column="1"
                 BackgroundColor="White"
                 BorderColor="White"
                 BorderWidth="1"
                 CornerRadius="17" />
-            <enhancedEntry:EnhancedEntry
+                <enhancedEntry:EnhancedEntry
                 Grid.Row="7"
                 Grid.Column="1"
                 Margin="5"
@@ -165,14 +167,14 @@
                 WidthRequest="250" />
 
 
-            <Button
+                <Button
                 Grid.Row="9"
                 Grid.Column="1"
                 BackgroundColor="White"
                 BorderColor="White"
                 BorderWidth="1"
                 CornerRadius="17" />
-            <enhancedEntry:EnhancedEntry
+                <enhancedEntry:EnhancedEntry
                 Grid.Row="9"
                 Grid.Column="1"
                 Margin="5"
@@ -185,14 +187,14 @@
                 Text="{Binding Path=Bairro}"
                 WidthRequest="250" />
 
-            <Button
+                <Button
                 Grid.Row="11"
                 Grid.Column="1"
                 BackgroundColor="White"
                 BorderColor="White"
                 BorderWidth="1"
                 CornerRadius="17" />
-            <enhancedEntry:EnhancedEntry
+                <enhancedEntry:EnhancedEntry
                 Grid.Row="11"
                 Grid.Column="1"
                 Margin="5"
@@ -206,14 +208,14 @@
                 WidthRequest="250" />
 
 
-            <Button
+                <Button
                 Grid.Row="13"
                 Grid.Column="1"
                 BackgroundColor="White"
                 BorderColor="White"
                 BorderWidth="1"
                 CornerRadius="17" />
-            <enhancedEntry:EnhancedEntry
+                <enhancedEntry:EnhancedEntry
                 Grid.Row="13"
                 Grid.Column="1"
                 Margin="5"
@@ -226,14 +228,14 @@
                 Text="{Binding Path=Uf}"
                 WidthRequest="250" />
 
-            <Button
+                <Button
                 Grid.Row="15"
                 Grid.Column="1"
                 BackgroundColor="White"
                 BorderColor="White"
                 BorderWidth="1"
                 CornerRadius="17" />
-            <enhancedEntry:EnhancedEntry
+                <enhancedEntry:EnhancedEntry
                 Grid.Row="15"
                 Grid.Column="1"
                 Margin="5"
@@ -247,14 +249,14 @@
                 WidthRequest="250" />
 
 
-            <Button
+                <Button
                 Grid.Row="17"
                 Grid.Column="1"
                 BackgroundColor="White"
                 BorderColor="White"
                 BorderWidth="1"
                 CornerRadius="17" />
-            <enhancedEntry:EnhancedEntry
+                <enhancedEntry:EnhancedEntry
                 Grid.Row="17"
                 Grid.Column="1"
                 Margin="5"
@@ -267,16 +269,16 @@
                 Text="{Binding Path=Complemento}"
                 WidthRequest="250" />
 
-            <!--<Label Grid.Row="14" Grid.Column="1" Text="* campos obrigatórios" FontSize="Small" TextColor="Red" HorizontalTextAlignment="Center"></Label>-->
+                <!--<Label Grid.Row="14" Grid.Column="1" Text="* campos obrigatórios" FontSize="Small" TextColor="Red" HorizontalTextAlignment="Center"></Label>-->
 
 
-            <StackLayout
+                <StackLayout
                 Grid.Row="19"
                 Grid.Column="1"
                 HorizontalOptions="CenterAndExpand"
                 Orientation="Horizontal">
 
-                <Button
+                    <Button
                     x:Name="btnSalvar"
                     BackgroundColor="Transparent"
                     BorderWidth="3"
@@ -288,7 +290,7 @@
                     TextColor="DarkRed" />
 
 
-                <Button
+                    <Button
                     x:Name="btnCancelar"
                     Margin="15,0,0,0"
                     BackgroundColor="Transparent"
@@ -300,9 +302,10 @@
                     Text="Cancelar"
                     TextColor="DarkRed" />
 
-            </StackLayout>
+                </StackLayout>
 
-        </Grid>
+            </Grid>
+        </ScrollView>
 
     </StackLayout>
 

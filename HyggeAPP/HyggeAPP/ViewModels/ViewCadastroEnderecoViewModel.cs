@@ -251,6 +251,13 @@ namespace HyggeAPP.ViewModels
             set => SetProperty(ref _isUpdate, value);
         }
 
+        private int rec_id;
+        public int Rec_id
+        {
+            get { return this.rec_id; }
+            set => SetProperty(ref this.rec_id, value);
+        }
+
         public ViewCadastroEnderecoViewModel(INavigationService navigationService)
             : base(navigationService)
         {
@@ -327,7 +334,7 @@ namespace HyggeAPP.ViewModels
 
             UsuarioEnderecoModel model = new UsuarioEnderecoModel();
             model.usuario_rec_id = Convert.ToInt32(Preferences.Get("rec_id", 0));
-            model.rec_id = 1000;
+            model.rec_id = IsUpdate ? Rec_id : 1000;
             model.cep = Cep;
             model.logradouro = Logradouro;
             model.bairro = Bairro;
@@ -335,6 +342,7 @@ namespace HyggeAPP.ViewModels
             model.uf = Uf;
             model.numero = Numero;
             model.descricao_amigavel = Descricao;
+            model.complemento = Complemento;
 
             if (IsAtivo)
                 model.ativo = 1;
@@ -460,6 +468,7 @@ namespace HyggeAPP.ViewModels
             Uf = usuarioEndereco.uf;
             Numero = usuarioEndereco.numero;
             Complemento = usuarioEndereco.complemento;
+            Rec_id = usuarioEndereco.rec_id;
         }
     }
 }

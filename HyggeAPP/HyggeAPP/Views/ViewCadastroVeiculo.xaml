@@ -99,18 +99,15 @@
                 BorderColor="White"
                 BorderWidth="1"
                 CornerRadius="17" />
-            <enhancedEntry:EnhancedEntry
+            <Picker
+                Title="Marca"
                 Grid.Row="4"
                 Grid.Column="1"
-                Margin="5"
-                BackgroundColor="Transparent"
-                FontSize="Small"
-                HorizontalOptions="Start"
-                MaxLength="250"
-                Placeholder="Marca"
-                PlaceholderColor="Gray"
-                Text="{Binding DescricaoMarca}"
-                WidthRequest="250" />
+                ItemDisplayBinding="{Binding descricao_marca}"
+                ItemsSource="{Binding Marcas}"
+                SelectedIndex="{Binding SelectedIndexMarca}"
+                SelectedItem="{Binding Marca}"
+                TextColor="Gray" />
 
 
             <Button
@@ -120,18 +117,15 @@
                 BorderColor="White"
                 BorderWidth="1"
                 CornerRadius="17" />
-            <enhancedEntry:EnhancedEntry
+            <Picker
+                Title="Modelo"
                 Grid.Row="5"
                 Grid.Column="1"
-                Margin="5"
-                BackgroundColor="Transparent"
-                FontSize="Small"
-                HorizontalOptions="Start"
-                MaxLength="250"
-                Placeholder="Modelo"
-                PlaceholderColor="Gray"
-                Text="{Binding DescricaoModelo}"
-                WidthRequest="250" />
+                ItemDisplayBinding="{Binding descricao_modelo}"
+                ItemsSource="{Binding Modelos}"
+                SelectedIndex="{Binding SelectedIndexModel}"
+                SelectedItem="{Binding Modelo}"
+                TextColor="Gray" />
 
 
             <StackLayout

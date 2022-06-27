@@ -93,17 +93,43 @@ namespace HyggeAPP.ViewModels
             LoginCommand = new DelegateCommand(LoginAsync);
             OpenCadastroCommand = new DelegateCommand(OpenCadastroAsync);
 
-            _app.Usuario.nome = Preferences.Get("nome", null);
-            _app.Usuario.token = Preferences.Get("token", null);
-            _app.Usuario.cod_usuario = Preferences.Get("codusuario", null);
-            _app.Usuario.rec_id = Convert.ToInt32(Preferences.Get("recid", null));
 
-            //if (!String.IsNullOrEmpty(_app.Usuario.nome)
-            //    && !String.IsNullOrEmpty(_app.Usuario.token)
-            //    && !String.IsNullOrEmpty(_app.Usuario.cod_usuario)
-            //    )
-            //    NavigationService.NavigateAsync("ViewMenuPrincipal");
+            isTaskRunning = true;
 
+            string strNome = Preferences.Get("nome", null);
+            string strToken = Preferences.Get("token", null);
+            string strCodUsuario = Preferences.Get("codusuario", null);
+            string strRecId = Preferences.Get("recid", null);
+            string strLogin = Preferences.Get("login", null);
+            string strSenha = Preferences.Get("senha", null);
+
+
+            if (!String.IsNullOrEmpty(strNome)
+                && !String.IsNullOrEmpty(strToken)
+                && !String.IsNullOrEmpty(strCodUsuario)
+                && !String.IsNullOrEmpty(strRecId))
+            {
+                _app.Usuario.nome = Preferences.Get("nome", null);
+                _app.Usuario.token = Preferences.Get("token", null);
+                _app.Usuario.cod_usuario = Preferences.Get("codusuario", null);
+                _app.Usuario.rec_id = Convert.ToInt32(Preferences.Get("recid", null));
+                _app.Usuario.login = Preferences.Get("login", null);
+                _app.Usuario.password = Preferences.Get("senha", null);
+            }
+
+
+            if (!String.IsNullOrEmpty(_app.Usuario.nome)
+                && !String.IsNullOrEmpty(_app.Usuario.token)
+                && !String.IsNullOrEmpty(_app.Usuario.cod_usuario)
+                )
+            {
+                LoginTokenAsync();
+                Task.Delay(2000);
+
+                isTaskRunning = false;
+
+                NavigationService.NavigateAsync("ViewMenuPrincipal");
+            }
 
         }
 
@@ -151,12 +177,16 @@ namespace HyggeAPP.ViewModels
                     Preferences.Set("token", usuariosRetorno.token);
                     Preferences.Set("codusuario", usuariosRetorno.cod_usuario);
                     Preferences.Set("nome", usuariosRetorno.nome);
-                    Preferences.Set("rec_id", usuariosRetorno.rec_id);
+                    Preferences.Set("recid", usuariosRetorno.rec_id.ToString());
+                    Preferences.Set("login", Usuario);
+                    Preferences.Set("senha", Senha);
 
                     _app.Usuario.token = usuariosRetorno.token;
                     _app.Usuario.cod_usuario = usuariosRetorno.cod_usuario;
                     _app.Usuario.nome = usuariosRetorno.nome;
                     _app.Usuario.rec_id = usuariosRetorno.rec_id;
+                    _app.Usuario.login = Usuario;
+                    _app.Usuario.password = Senha;
 
                     IsTaskRunning = false;
 
@@ -184,5 +214,66 @@ namespace HyggeAPP.ViewModels
             }
 
         }
+
+        public async void LoginTokenAsync()
+        {
+
+            IsTaskRunning = true;
+
+            try
+            {
+
+                UsuarioModel uu = new UsuarioModel();
+                uu.login = _app.Usuario.login;
+                uu.password = _app.Usuario.password;
+
+                var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
+
+                var usuariosRetorno = await metodoAPI.PostLogin(uu);
+
+                await Task.Delay(1000);
+
+                if (usuariosRetorno.nome != string.Empty)
+                {
+
+                    Preferences.Set("token", usuariosRetorno.token);
+                    Preferences.Set("codusuario", usuariosRetorno.cod_usuario);
+                    Preferences.Set("nome", usuariosRetorno.nome);
+                    Preferences.Set("recid", usuariosRetorno.rec_id.ToString());
+                    Preferences.Set("login", usuariosRetorno.login);
+                    Preferences.Set("senha", usuariosRetorno.password);
+
+                    _app.Usuario.token = usuariosRetorno.token;
+                    _app.Usuario.cod_usuario = usuariosRetorno.cod_usuario;
+                    _app.Usuario.nome = usuariosRetorno.nome;
+                    _app.Usuario.rec_id = usuariosRetorno.rec_id;
+                    _app.Usuario.login = usuariosRetorno.login;
+                    _app.Usuario.password = usuariosRetorno.password;
+
+                    IsTaskRunning = false;
+
+                    await NavigationService.NavigateAsync("ViewMenuPrincipal");
+
+                }
+                else
+                {
+                    IsTaskRunning = false;
+                    return;
+                }
+
+            }
+            catch (Exception e)
+            {
+
+                if (e.Message == "No such host is known")
+                    UserDialogs.Instance.Alert("Erro ao acessar os servidores. Por favor, tente mais tarde.", "Aviso");
+
+                //throw;
+                IsTaskRunning = false;
+                return;
+            }
+
+        }
+
     }
 }

@@ -18,244 +18,128 @@ using Xamarin.Forms;
 
 namespace HyggeAPP.ViewModels
 {
-    public class ViewCadastroVeiculoViewModel : ViewModelBase, INotifyPropertyChanged
+    public class ViewCadastroVeiculoViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public App _app => (Application.Current as App);
-
         public DelegateCommand SalvarCommand { get; set; }
         public DelegateCommand CancelarCommand { get; set; }
-
-        public string token { get; set; }
-        public string codusuario { get; set; }
 
         private bool isTaskRunning;
         public bool IsTaskRunning
         {
             get { return this.isTaskRunning; }
-            set
-            {
-                if (value != this.isTaskRunning)
-                {
-                    this.isTaskRunning = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("IsTaskRunning"));
-                    }
-                }
-            }
+            set => SetProperty(ref this.isTaskRunning, value);
         }
 
         private int rec_id;
         public int Rec_id
         {
             get { return this.rec_id; }
-            set
-            {
-                if (value != this.rec_id)
-                {
-                    this.rec_id = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("Rec_id"));
-                    }
-                }
-            }
+            set => SetProperty(ref this.rec_id, value);
         }
 
         private int usuario_rec_id;
         public int Usuario_rec_id
         {
             get { return this.usuario_rec_id; }
-            set
-            {
-                if (value != this.usuario_rec_id)
-                {
-                    this.usuario_rec_id = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("Usuario_rec_id"));
-                    }
-                }
-            }
+            set => SetProperty(ref this.usuario_rec_id, value);
         }
 
         private int modelo_rec_id;
         public int Modelo_rec_id
         {
             get { return this.modelo_rec_id; }
-            set
-            {
-                if (value != this.modelo_rec_id)
-                {
-                    this.modelo_rec_id = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("Modelo_rec_id"));
-                    }
-                }
-            }
+            set => SetProperty(ref this.modelo_rec_id, value);
         }
 
         private int marca_rec_id;
         public int Marca_rec_id
         {
             get { return this.marca_rec_id; }
-            set
-            {
-                if (value != this.marca_rec_id)
-                {
-                    this.marca_rec_id = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("Marca_rec_id"));
-                    }
-                }
-            }
+            set => SetProperty(ref this.marca_rec_id, value);
         }
 
         private bool isPrincipal;
         public bool IsPrincipal
         {
             get { return this.isPrincipal; }
-            set
-            {
-                if (value != this.isPrincipal)
-                {
-                    this.isPrincipal = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("IsPrincipal"));
-                    }
-                }
-            }
+            set => SetProperty(ref this.isPrincipal, value);
         }
 
         private bool isPinturaMetalica;
         public bool IsPinturaMetalica
         {
             get { return this.isPinturaMetalica; }
-            set
-            {
-                if (value != this.isPinturaMetalica)
-                {
-                    this.isPinturaMetalica = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("IsPinturaMetalica"));
-                    }
-                }
-            }
+            set => SetProperty(ref this.isPinturaMetalica, value);
         }
 
         private string descricaoAmigavel;
         public string DescricaoAmigavel
         {
             get { return this.descricaoAmigavel; }
-            set
-            {
-                if (value != this.descricaoAmigavel)
-                {
-                    this.descricaoAmigavel = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("DescricaoAmigavel"));
-                    }
-                }
-            }
+            set => SetProperty(ref this.descricaoAmigavel, value);
         }
 
         private string cor;
         public string Cor
         {
             get { return this.cor; }
-            set
-            {
-                if (value != this.cor)
-                {
-                    this.cor = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("Cor"));
-                    }
-                }
-            }
+            set => SetProperty(ref cor, value);
         }
 
         private string descricaoMarca;
         public string DescricaoMarca
         {
             get { return this.descricaoMarca; }
-            set
-            {
-                if (value != this.descricaoMarca)
-                {
-                    this.descricaoMarca = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("DescricaoMarca"));
-                    }
-                }
-            }
+            set => SetProperty(ref descricaoMarca, value);
         }
 
         private string descricaoModelo;
         public string DescricaoModelo
         {
             get { return this.descricaoModelo; }
-            set
-            {
-                if (value != this.descricaoModelo)
-                {
-                    this.descricaoModelo = value;
-
-                    var handler = this.PropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(this,
-                            new PropertyChangedEventArgs("DescricaoModelo"));
-                    }
-                }
-            }
+            set => SetProperty(ref descricaoModelo, value);
         }
 
         private bool _isUpdate;
+
         public bool IsUpdate
         {
             get => _isUpdate;
             set => SetProperty(ref _isUpdate, value);
         }
 
+        private MarcaVeiculoModel marca;
+        public MarcaVeiculoModel Marca
+        {
+            get => marca;
+            set
+            {
+                SetProperty(ref marca, value);
+                _ = CarregarModelo(value.red_id);
+            }
+        }
+
+        private int selectedIndexModel = -1;
+        public int SelectedIndexModel { get => selectedIndexModel; set => SetProperty(ref selectedIndexModel, value); }
+
+        private int selectedIndexMarca = -1;
+        public int SelectedIndexMarca { get => selectedIndexMarca; set => SetProperty(ref selectedIndexMarca, value); }
+
+        private ModeloVeiculoModel modelo;
+        public ModeloVeiculoModel Modelo { get => modelo; set => SetProperty(ref modelo, value); }
+
+        private ObservableCollection<MarcaVeiculoModel> marcas = new ObservableCollection<MarcaVeiculoModel>();
+        public ObservableCollection<MarcaVeiculoModel> Marcas
+        {
+            get => marcas; set => SetProperty(ref marcas, value);
+        }
+
+        private ObservableCollection<ModeloVeiculoModel> modelos = new ObservableCollection<ModeloVeiculoModel>();
+
+        public ObservableCollection<ModeloVeiculoModel> Modelos
+        {
+            get => modelos; set => SetProperty(ref modelos, value);
+        }
 
         public ViewCadastroVeiculoViewModel(INavigationService navigationService)
             : base(navigationService)
@@ -277,13 +161,13 @@ namespace HyggeAPP.ViewModels
                 return;
             }
 
-            if (String.IsNullOrEmpty(DescricaoMarca))
+            if (String.IsNullOrEmpty(Marca?.descricao_marca))
             {
                 UserDialogs.Instance.Alert("Favor informar a marca", "AVISO");
                 return;
             }
 
-            if (String.IsNullOrEmpty(DescricaoModelo))
+            if (String.IsNullOrEmpty(Modelo?.descricao_modelo))
             {
                 UserDialogs.Instance.Alert("Favor informar o modelo", "AVISO");
                 return;
@@ -298,14 +182,14 @@ namespace HyggeAPP.ViewModels
                 {
                     cor = Cor,
                     descricao_amigavel = DescricaoAmigavel,
-                    descricao_marca = DescricaoMarca,
-                    descricao_modelo = DescricaoModelo,
+                    descricao_marca = Marca.descricao_marca,
+                    descricao_modelo = Modelo.descricao_modelo,
                     principal = IsPrincipal,
                     pintura_metalica = IsPinturaMetalica,
                     usuario_rec_id = Convert.ToInt32(Preferences.Get("rec_id", 0)),
-                    rec_id = 1000,
-                    marca_rec_id = 1001,
-                    modelo_rec_id = 1002
+                    rec_id = IsUpdate ? Rec_id : 1000,
+                    marca_rec_id = Marca.red_id,
+                    modelo_rec_id = Modelo.rec_id
                 };
 
                 if (IsUpdate)
@@ -332,9 +216,11 @@ namespace HyggeAPP.ViewModels
             }
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+
+            await CarregarMarcas();
 
             if (parameters.GetNavigationMode() == Prism.Navigation.NavigationMode.Back)
                 return;
@@ -343,10 +229,10 @@ namespace HyggeAPP.ViewModels
             if (veiculo is null)
                 return;
 
-            CarregarVeiculo(veiculo);
+            await CarregarVeiculo(veiculo);
         }
 
-        private void CarregarVeiculo(VeiculoClienteModel veiculo)
+        private async Task CarregarVeiculo(VeiculoClienteModel veiculo)
         {
             IsUpdate = true;
             IsPinturaMetalica = veiculo.pintura_metalica;
@@ -357,6 +243,66 @@ namespace HyggeAPP.ViewModels
             DescricaoModelo = veiculo.descricao_modelo;
             marca_rec_id = veiculo.marca_rec_id;
             modelo_rec_id = veiculo.modelo_rec_id;
+            Marca = Marcas?.FirstOrDefault(x => x.red_id == veiculo.marca_rec_id);
+            SelectedIndexMarca = Marcas.IndexOf(Marca);
+            rec_id = veiculo.rec_id;
+
+        }
+
+        internal async Task CarregarMarcas()
+        {
+            try
+            {
+                var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
+
+                var result = await metodoAPI.ListarMarcasVeiculos(Preferences.Get("token", ""));
+
+                if (result is null)
+                    return;
+
+                Marcas?.Clear();
+                result.ForEach(x =>
+                {
+                    Marcas.Add(x);
+                });
+
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+
+        }
+
+        internal async Task<bool> CarregarModelo(int marca_rec_id)
+        {
+            try
+            {
+                var metodoAPI = RestService.For<IRestClientApi>(Constants.ApiUrl);
+
+                var result = await metodoAPI.ListarModelosVeiculosByMarca(Preferences.Get("token", ""), marca_rec_id);
+
+                if (result is null)
+                    return false;
+
+                Modelos?.Clear();
+                result.ForEach(x =>
+                {
+                    Modelos.Add(x);
+                });
+
+                if (IsUpdate)
+                {
+                    Modelo = Modelos?.FirstOrDefault(x => x.rec_id == modelo_rec_id);
+                    SelectedIndexModel = Modelos.IndexOf(Modelo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return true;
         }
     }
 }
